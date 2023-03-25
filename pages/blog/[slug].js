@@ -24,7 +24,7 @@ export default function Post(props) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts");
+  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=200");
   const posts = await res.json();
   const thePaths = posts.map((post) => {
     return { params: { slug: post.slug } };
@@ -35,6 +35,7 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+
 
 export async function getStaticProps(context) {
   const slug = context.params.slug;
