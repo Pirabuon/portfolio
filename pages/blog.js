@@ -5,9 +5,16 @@ export default function Blog(props) {
     <>
       <h2>The Blog</h2>
       {props.posts.map((post, index) => {
-        const featuredImageUrl =
+        let featuredImageUrl =
           post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
             ?.medium?.source_url;
+        if (!featuredImageUrl) {
+          // use first image from post if no featured image available
+          const matches = post.content.rendered.match(/<img.*?src="(.*?)"/);
+          if (matches) {
+            featuredImageUrl = matches[1];
+          }
+        }
         return (
           <div key={index}>
             <h3>
