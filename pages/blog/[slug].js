@@ -14,9 +14,7 @@ export default function Post(props) {
         </Link>
       </p>
     <div className={styles.meta}>
-        <p>By {author.name}</p>
-        <p>Published on {new Date(date).toLocaleDateString()}</p>
-        <p>Category: {categories[0].name}</p>
+        <p>{categories[0].name} | {new Date(date).toLocaleDateString()} - {author.name} - </p>
       </div>
       <h2 className={styles.title}>{title.rendered}</h2>
       
