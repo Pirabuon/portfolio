@@ -40,9 +40,8 @@ export default function Blog(props) {
 
 export async function getStaticProps() {
   const response = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?per_page=20&_embed=true"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true"
   );
-
   const data = await response.json();
 
   return {
