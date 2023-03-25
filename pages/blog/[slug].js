@@ -13,10 +13,11 @@ export default function Post(props) {
           <small>&laquo; back</small>
         </Link>
       </p>
-      <h2 className={styles.title}>{title.rendered}</h2>
-      <div className={styles.meta}>
-        <p>Published on {new Date(date).toLocaleDateString()} - {author.name}</p>
+          <div className={styles.meta}>
+        <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
       </div>
+      <h2 className={styles.title}>{title.rendered}</h2>
+
       <div
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
