@@ -22,20 +22,7 @@ export default function Post(props) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts");
-  const posts = await res.json();
-  const thePaths = posts.map((post) => {
-    return { params: { slug: post.slug } };
-  });
-
-  return {
-    paths: thePaths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
     `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content`
@@ -46,6 +33,18 @@ export async function getStaticProps(context) {
     props: {
       post: post[0],
     },
-    revalidate: 10,
+  };
+}
+
+export async function getStaticPaths() {
+  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts");
+  const posts = await res.json();
+  const thePaths = posts.map((post) => {
+    return { params: { slug: post.slug } };
+  });
+
+  return {
+    paths: thePaths,
+    fallback: true,
   };
 }
