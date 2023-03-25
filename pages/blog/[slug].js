@@ -4,6 +4,11 @@ import styles from "../../styles/post.module.css";
 
 export default function Post(props) {
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <p>
@@ -22,10 +27,19 @@ export default function Post(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const slug = context.params.slug;
+export async function getStaticPaths() {
+  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts");
+  const posts = await res.json();
+  const paths = posts.slice(0, 10).map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return { paths, fallback: 'blocking' };
+}
+
+export async function getStaticProps({ params }) {
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content`
+    `https://valaakam.com/wp-json/wp/v2/posts?slug=${params.slug}&_fields=title,content`
   );
   const post = await res.json();
 
@@ -33,18 +47,6 @@ export async function getServerSideProps(context) {
     props: {
       post: post[0],
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts");
-  const posts = await res.json();
-  const thePaths = posts.map((post) => {
-    return { params: { slug: post.slug } };
-  });
-
-  return {
-    paths: thePaths,
-    fallback: true,
+    revalidate: 1,
   };
 }
