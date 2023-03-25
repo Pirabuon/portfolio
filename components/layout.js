@@ -41,7 +41,9 @@ export default function Layout({ children }) {
               <Link
                 className={router.pathname == "/abnormal" ? "active" : ""}
                 href="/about"
-              ></Link>
+              >
+                Abnormal
+              </Link>
             </li>
             <li>
               <Link
