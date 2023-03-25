@@ -4,7 +4,7 @@ import styles from "../../styles/post.module.css";
 
 export default function Post(props) {
   const router = useRouter();
-  const { title, content, author, date, categories } = props.post;
+  const { title, content, author, date } = props.post;
 
   return (
     <>
@@ -13,11 +13,10 @@ export default function Post(props) {
           <small>&laquo; back</small>
         </Link>
       </p>
-    <div className={styles.meta}>
-        <p>{categories[0].name} | {new Date(date).toLocaleDateString()} - {author.name} - </p>
-      </div>
       <h2 className={styles.title}>{title.rendered}</h2>
-      
+      <div className={styles.meta}>
+        <p>Published on {new Date(date).toLocaleDateString()} - {author.name}</p>
+      </div>
       <div
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
@@ -46,7 +45,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date,categories`
+    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date`
   );
   const post = await res.json();
 
