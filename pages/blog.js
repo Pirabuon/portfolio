@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Blog(props) {
   return (
     <>
-      <h2>The Blog</h2>
+      <h2></h2>
       {props.posts.map((post, index) => {
         let featuredImageUrl =
           post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
@@ -16,18 +16,22 @@ export default function Blog(props) {
           }
         }
         return (
-          <div key={index}>
-            <h3>
-              <Link href={`/blog/${post.slug}`}>{post.title.rendered}</Link>
-            </h3>
-            {featuredImageUrl && (
-              <img src={featuredImageUrl} alt={post.title.rendered} />
-            )}
-            <div
-              dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-            ></div>
-            <hr />
-          </div>
+          <Link href={`/blog/${post.slug}`}>
+            <div key={index} className="postItem">
+              <h3>{post.title.rendered}</h3>
+              {featuredImageUrl && (
+                <img
+                  className="mainImg"
+                  src={featuredImageUrl}
+                  alt={post.title.rendered}
+                />
+              )}
+              <div
+                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+              ></div>
+              <hr />
+            </div>
+          </Link>
         );
       })}
     </>
