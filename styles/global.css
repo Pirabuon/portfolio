@@ -34,3 +34,40 @@ body {
   color: #999;
   font-size: 0.75rem;
 }
+a {
+  text-decoration: none;
+  color: #222;
+}
+h1.siteTitle {
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+}
+.header-nav ul {
+  text-align: center;
+  justify-content: center;
+}
+.postItem {
+  width: 21%;
+  float: left;
+  padding: 1%;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  margin: 1%;
+  border-radius: 5px;
+}
+img.mainImg {
+  width: 100%;
+  border-radius: 5px;
+}
+
+@media (max-width: 768.98px) {
+  .postItem {
+    width: 90%;
+    float: unset;
+    padding: 1rem;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    margin: 0%;
+    margin-bottom: 1rem;
+  }
+}
