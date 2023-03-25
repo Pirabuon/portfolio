@@ -1,16 +1,16 @@
-import "../styles/global.css"
-import Layout from "../components/layout.js"
-import Head from "next/head"
+import "../styles/global.css";
+import Layout from "../components/layout.js";
+import Head from "next/head";
 
 export default function AppWrapper({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>{pageProps.title ? pageProps.title : "Our Basic Title"}</title>
+        <title>{pageProps.title ? pageProps.title : "Valaakam Blog"}</title>
       </Head>
-      <Layout>
+      <Layout classname="content">
         <Component {...pageProps} />
       </Layout>
     </>
-  )
+  );
 }
