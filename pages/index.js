@@ -1,20 +1,53 @@
-export default function Home(props) {
+import Link from "next/link";
+
+export default function Blog(props) {
   return (
-    <div>
-      <h2>Welcome to our homepage.</h2>
-      <p>This is the best home page in the world. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum aspernatur illum architecto cumque recusandae fuga sequi necessitatibus deleniti repellat harum nobis, dolor veniam vero deserunt. Voluptatibus, ducimus deserunt. Recusandae, dolore.</p>
-      <p>The weather: {props.forecast}</p>
-    </div>
-  )
+    <>
+      <h2></h2>
+      {props.posts.map((post, index) => {
+        let featuredImageUrl =
+          post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
+            ?.medium?.source_url;
+        if (!featuredImageUrl) {
+          // use first image from post if no featured image available
+          const matches = post.content.rendered.match(/<img.*?src="(.*?)"/);
+          if (matches) {
+            featuredImageUrl = matches[1];
+          }
+        }
+        return (
+          <Link href={`/blog/${post.slug}`}>
+            <div key={index} className="postItem">
+              <h3>{post.title.rendered}</h3>
+              {featuredImageUrl && (
+                <img
+                  className="mainImg"
+                  src={featuredImageUrl}
+                  alt={post.title.rendered}
+                />
+              )}
+              <div
+                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+              ></div>
+              <hr />
+            </div>
+          </Link>
+        );
+      })}
+    </>
+  );
 }
 
-export async function getServerSideProps() {
-  const response = await fetch("https://api.weather.gov/gridpoints/MFL/109,49/forecast")
-  const data = await response.json()
+export async function getStaticProps() {
+  const response = await fetch(
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true"
+  );
+  const data = await response.json();
 
   return {
     props: {
-      forecast: data.properties.periods[0].detailedForecast
-    }
-  }
+      posts: data,
+    },
+    revalidate: 10, // update content every 10 seconds
+  };
 }
