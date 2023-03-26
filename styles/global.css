@@ -48,6 +48,7 @@ h1.siteTitle {
   text-align: center;
   justify-content: center;
 }
+
 .postItem {
   width: 21%;
   float: left;
@@ -60,7 +61,13 @@ img.mainImg {
   width: 100%;
   border-radius: 5px;
 }
-
+.topMenuBar {
+  position: fixed;
+  background: white;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
 @media (max-width: 768.98px) {
   .postItem {
     width: 90%;
