@@ -13,7 +13,7 @@ export default function Post(props) {
           <small>&laquo; back</small>
         </Link>
       </p>
-          <div className={styles.meta}>
+      <div className={styles.meta}>
         <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
       </div>
       <h2 className={styles.title}>{title.rendered}</h2>
@@ -30,18 +30,29 @@ export default function Post(props) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=99");
-  const posts = await res.json();
-  const thePaths = posts.map((post) => {
-    return { params: { slug: post.slug } };
-  });
+  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=100");
+  const totalPosts = Number(res.headers.get("X-WP-Total"));
+  const totalPages = Number(res.headers.get("X-WP-TotalPages"));
+
+  // Generate paths for all posts by iterating through all pages
+  let paths = [];
+  for (let page = 1; page <= totalPages; page++) {
+    const res = await fetch(
+      `https://valaakam.com/wp-json/wp/v2/posts?per_page=100&page=${page}`
+    );
+    const posts = await res.json();
+    paths = paths.concat(
+      posts.map((post) => {
+        return { params: { slug: post.slug } };
+      })
+    );
+  }
 
   return {
-    paths: thePaths,
+    paths: paths,
     fallback: false,
   };
 }
-
 
 export async function getStaticProps(context) {
   const slug = context.params.slug;
