@@ -21,7 +21,10 @@
   object-fit: cover;
   object-position: top center;
   border-radius: 5px;
-
+}
+iframe{
+width:80%;
+}
 
 button.btn {
     border: 0;
