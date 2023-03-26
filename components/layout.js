@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SlideToggleMenu from "../components/SlideToggleMenu";
 
 export default function Layout({ children }) {
   const router = useRouter();
 
   return (
     <>
+      <SlideToggleMenu />
       <div>
         <Link
           className={
@@ -33,15 +35,17 @@ export default function Layout({ children }) {
             </li>
             <li>
               <Link
-                className={router.pathname == "/abnormal" ? "active" : ""}
-                href="/abnormal"
-              >abnormal</Link>
+                className={router.pathname == "/about" ? "active" : ""}
+                href="/about"
+              ></Link>
             </li>
             <li>
               <Link
                 className={router.pathname == "/abnormal" ? "active" : ""}
-                href="/about"
-              ></Link>
+                href="/abnormal"
+              >
+                abnormal
+              </Link>
             </li>
             <li>
               <Link
@@ -59,7 +63,7 @@ export default function Layout({ children }) {
       </div>
       {children}
       <div className="site-footer">
-        <p>Footer text, all rights reserved &copy;</p>
+        <p>Valaakam</p>
       </div>
     </>
   );
