@@ -7,19 +7,24 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <SlideToggleMenu />
       <div>
-        <Link
-          className={
-            router.pathname == "/blog" || router.pathname == "/blog/[slug]"
-              ? "active"
-              : ""
-          }
-          href="/blog"
-        >
-          <h1 className="siteTitle">Valaakam</h1>
-        </Link>
-        <nav className="header-nav">
+        <div className="topMenuBar">
+          <SlideToggleMenu />
+
+          <Link
+            className={
+              router.pathname == "/blog" || router.pathname == "/blog/[slug]"
+                ? "active"
+                : ""
+            }
+            href="/blog"
+          >
+            <h1 className="siteTitle">Valaakam</h1>
+          </Link>
+        </div>
+
+        {/* 
+ <nav className="header-nav">
           <ul>
             <li>
               <Link
@@ -59,7 +64,7 @@ export default function Layout({ children }) {
               ></Link>
             </li>
           </ul>
-        </nav>
+        </nav>      */}
       </div>
       {children}
       <div className="site-footer">
