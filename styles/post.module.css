@@ -12,6 +12,8 @@
   font-size: 1.5rem;
   margin: 32px 0;
   line-height: 1.25;
+    overflow-wrap: break-word !important;
+  white-space: pre-wrap;
 }
 
 .cont img {
