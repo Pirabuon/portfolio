@@ -8,7 +8,7 @@ body {
   font-family: sans-serif;
   padding: 10px 20px;
   line-height: 1.6;
-  padding-top: 4rem;
+  padding-top: 4rem !important;
 }
 
 .header-nav ul {
