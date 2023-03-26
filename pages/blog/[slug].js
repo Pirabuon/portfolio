@@ -4,7 +4,7 @@ import styles from "../../styles/post.module.css";
 
 export default function Post(props) {
   const router = useRouter();
-  const { title, content, author, date } = props.post;
+  const { title, content, author, date, featured_image_url } = props.post;
 
   return (
     <>
@@ -16,6 +16,11 @@ export default function Post(props) {
       <div className={styles.meta}>
         <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
       </div>
+      {featured_image_url && (
+        <div className={styles.featuredImage}>
+          <img src={featured_image_url} alt={title.rendered} />
+        </div>
+      )}
       <h2 className={styles.title}>{title.rendered}</h2>
 
       <div
@@ -28,6 +33,7 @@ export default function Post(props) {
     </>
   );
 }
+
 
 export async function getStaticPaths() {
   const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=100");
