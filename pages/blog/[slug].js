@@ -8,11 +8,11 @@ export default function Post(props) {
 
   return (
     <>
-      <p>
+      <button className={styles.btn}>
         <Link href="/blog">
           <small>&laquo; back</small>
         </Link>
-      </p>
+      </button>
       <div className={styles.meta}>
         <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
       </div>
