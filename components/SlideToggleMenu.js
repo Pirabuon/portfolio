@@ -12,7 +12,7 @@ function SlideToggleMenu() {
   return (
     <div className={styles.slideToggleMenu}>
       <button className={styles.toggleButton} onClick={toggleMenu}>
-        {isOpen ? "Close Menu" : "Open Menu"}
+        {isOpen ? "Close" : "Menu"}
       </button>
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
