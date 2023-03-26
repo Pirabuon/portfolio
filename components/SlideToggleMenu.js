@@ -20,10 +20,10 @@ function SlideToggleMenu() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/">abnormal</a>
+            <a href="/abnormal">abnormal</a>
           </li>
           <li>
-            <a href="/">blog</a>
+            <a href="/blog">blog</a>
           </li>
         </ul>
       </nav>
