@@ -1,14 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;700&family=Kavivanar&display=swap");
+
 body,
 html {
   margin: 0;
   padding: 0;
 }
-
+* {
+  font-family: "Baloo Thambi 2", cursive;
+}
 body {
   font-family: sans-serif;
   padding: 10px 20px;
   line-height: 1.6;
-  padding-top: 4rem !important;
 }
 
 .header-nav ul {
@@ -53,15 +56,26 @@ h1.siteTitle {
 .postItem {
   width: 21%;
   float: left;
-  padding: 1%;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   margin: 1%;
   border-radius: 5px;
-  overflow:hidden;
+  margin-bottom: 1rem;
+}
+.postCont {
+  padding: 0 1rem 1rem 1rem;
+}
+.postCont h3 {
+  font-size: 1.25rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: -0.75rem;
 }
 img.mainImg {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .topMenuBar {
   position: fixed;
@@ -72,11 +86,10 @@ img.mainImg {
 }
 @media (max-width: 768.98px) {
   .postItem {
-    width: 90%;
+    width: 100%;
     float: unset;
-    padding: 1rem;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
     margin: 0%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 }
