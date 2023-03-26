@@ -1,10 +1,3 @@
-
-Fixing 404 Error.
-
-
-Pirabu Chandran
-Why following code not work (got 404) when I create new post from wordpress
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../../styles/post.module.css";
