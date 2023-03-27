@@ -6,14 +6,16 @@ export default function Post(props) {
   const router = useRouter();
   const { title, content, author, date, featured_image_url } = props.post;
 
-  // Replace the domain name in the featured image URL
+
+  // Extract the first image from the post content
+  const firstImageUrl = content.rendered.match(/<img.+?src=(['"])(.+?)\1/)?.[2];
+
+    // Replace the domain name in the featured image URL
 const valaakamImageUrl = firstImageUrl?.replace(
   "https://edu.tamilclone.com/",
   "https://valaakam.com/"
 );
-  // Extract the first image from the post content
-  const firstImageUrl = content.rendered.match(/<img.+?src=(['"])(.+?)\1/)?.[2];
-
+  
   return (
     <>
       <button className={styles.btn}>
