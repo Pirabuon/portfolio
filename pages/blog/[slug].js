@@ -4,7 +4,7 @@ import styles from "../../styles/post.module.css";
 
 export default function Post(props) {
   const router = useRouter();
-  const { title, content, author, date, featured_image_url } = props.post;
+  const { title, content, author, date, featured_image_url, acf } = props.post;
 
   return (
     <>
@@ -22,7 +22,9 @@ export default function Post(props) {
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
-
+      {acf.poster && (
+        <p>{acf.poster}</p>
+      )}
       <div
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
@@ -64,7 +66,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date`
+    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date,featured_image_url,acf`
   );
   const post = await res.json();
 
@@ -75,4 +77,3 @@ export async function getStaticProps(context) {
     revalidate: 10,
   };
 }
-
