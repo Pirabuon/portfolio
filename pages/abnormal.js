@@ -4,6 +4,7 @@ export default function Blog(props) {
   return (
     <>
       <h2>Blog Title Goes Here</h2>
+        <div className="lister">
       {props.posts.map((post, index) => {
         let featuredImageUrl =
           post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
@@ -36,6 +37,7 @@ export default function Blog(props) {
           </Link>
         );
       })}
+      </div>
     </>
   );
 }
