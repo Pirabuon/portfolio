@@ -7,11 +7,10 @@ export default function Post(props) {
   const { title, content, author, date, featured_image_url } = props.post;
 
   // Replace the domain name in the featured image URL
-  const valaakamImageUrl = featured_image_url?.replace(
-    "https://edu.tamilclone.com/",
-    "https://valaakam.com/"
-  );
-
+const valaakamImageUrl = firstImageUrl?.replace(
+  "https://edu.tamilclone.com/",
+  "https://valaakam.com/"
+);
   // Extract the first image from the post content
   const firstImageUrl = content.rendered.match(/<img.+?src=(['"])(.+?)\1/)?.[2];
 
