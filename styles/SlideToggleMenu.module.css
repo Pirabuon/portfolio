@@ -14,7 +14,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index:102;
+  z-index:105;
 }
 
 .menu {
@@ -105,8 +105,9 @@ padding-top:5rem;
 
 .iconBar:last-child {
   transform: translateY(-0.3rem);
+  width: 70%;
+  margin-left: 30%;
 }
-
 .closeIcon .iconBar:first-child {
   transform: rotate(90deg) translate(1rem, 0rem);
   opacity: 0;
@@ -116,6 +117,8 @@ padding-top:5rem;
 }
 .closeIcon .iconBar:last-child {
   transform: rotate(0deg) translate(0rem, -1rem);
+  width: 100%;
+  margin-left: 00%;
 }
 
 .buttonText {
