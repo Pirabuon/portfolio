@@ -52,9 +52,14 @@ h1.siteTitle {
   text-align: center;
   justify-content: center;
 }
-
+.lister {
+    column-count: 4;
+    column-gap: 0.5em;
+    /* max-width: 980px; */
+    /* margin: auto; */
+    /* width: 100%; */
+}
 .postItem {
-  width: 21%;
   float: left;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   margin: 1%;
@@ -86,6 +91,9 @@ img.mainImg {
   z-index:999;
 }
 @media (max-width: 768.98px) {
+  .lister {
+    column-count: 1;
+}
   .postItem {
     width: 100%;
     float: unset;
