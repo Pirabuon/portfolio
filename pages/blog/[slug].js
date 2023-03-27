@@ -6,14 +6,11 @@ export default function Post(props) {
   const router = useRouter();
   const { title, content, author, date, featured_image_url } = props.post;
 
-  // Extract the first image from the post content if there's no featured image
-  let firstImageUrl;
-  if (!featured_image_url) {
-    const match = content.rendered.match(/<img.+?src="(.+?)"/);
-    if (match) {
-      firstImageUrl = match[1];
-    }
-  }
+  // Replace the domain name in the featured image URL
+  const valaakamImageUrl = featured_image_url?.replace(
+    "https://edu.tamilclone.com/",
+    "https://valaakam.com/"
+  );
 
   return (
     <>
@@ -27,12 +24,9 @@ export default function Post(props) {
           {new Date(date).toLocaleDateString()} - {author.name}
         </p>
       </div>
-      {(featured_image_url || firstImageUrl) && (
+      {valaakamImageUrl && (
         <div className={styles.featuredImage}>
-          <img
-            src={featured_image_url || firstImageUrl}
-            alt={title.rendered}
-          />
+          <img src={valaakamImageUrl} alt={title.rendered} />
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
