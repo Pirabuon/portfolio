@@ -6,31 +6,19 @@ export default function Post(props) {
   const router = useRouter();
   const { title, content, author, date, featured_image_url } = props.post;
 
-
-  // Extract the first image from the post content
-  const firstImageUrl = content.rendered.match(/<img.+?src=(['"])(.+?)\1/)?.[2];
-
-    // Replace the domain name in the featured image URL
-const valaakamImageUrl = firstImageUrl?.replace(
-  "https://edu.tamilclone.com/",
-  "https://valaakam.com/"
-);
-  
   return (
     <>
       <button className={styles.btn}>
-        <Link href="/">
+        <Link href="/blog">
           <small>&laquo; back</small>
         </Link>
       </button>
       <div className={styles.meta}>
-        <p>
-          {new Date(date).toLocaleDateString()} - {author.name}
-        </p>
+        <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
       </div>
-      {(featured_image_url || firstImageUrl) && (
+      {featured_image_url && (
         <div className={styles.featuredImage}>
-          <img src={valaakamImageUrl || firstImageUrl} alt={title.rendered} />
+          <img src={featured_image_url} alt={title.rendered} />
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
@@ -39,13 +27,12 @@ const valaakamImageUrl = firstImageUrl?.replace(
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
       ></div>
-      <button className={styles.button} onClick={() => router.push("/")}>
+      <button className={styles.button} onClick={() => router.push("/blog")}>
         Back
       </button>
     </>
   );
 }
-
 
 
 export async function getStaticPaths() {
@@ -77,7 +64,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date,featured_image_url`
+    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date`
   );
   const post = await res.json();
 
@@ -88,5 +75,4 @@ export async function getStaticProps(context) {
     revalidate: 10,
   };
 }
-
 
