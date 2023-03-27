@@ -3,6 +3,7 @@
   height: 40px;
   top: 1rem;
   right: 1rem;
+  z-index:101;
 }
 
 .toggleButton {
@@ -26,13 +27,14 @@
   text-align: right;
   background: #141414;
   padding: 1rem;
-  border-radius: 5px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   transform: translateX(100vw);
   height: 100vh;
   width: 60vw;
+    z-index: 100;
+padding-top:5rem;
   transition: all 0.3s;
-  z-index: 999;
+
 }
 
 .isOpen {
@@ -53,7 +55,7 @@
 .menu a {
   display: block;
   padding: 10px;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
