@@ -31,6 +31,3 @@ button.btn {
     left: 1rem;
   z-index:99;
 }
-iframe {
-    width: 100vw !important;
-}
