@@ -22,9 +22,8 @@ export default function Post(props) {
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
-      {acf.poster && (
         <p>{acf.poster}</p>
-      )}
+
       <div
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
