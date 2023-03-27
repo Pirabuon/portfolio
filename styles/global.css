@@ -95,6 +95,9 @@ img.mainImg {
   left: 0;
   z-index:999;
 }
+iframe {
+    width: 100vw !important;
+}
 @media (max-width: 768.98px) {
   .lister {
     column-count: 1;
