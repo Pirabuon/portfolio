@@ -11,8 +11,12 @@ function SlideToggleMenu() {
 
   return (
     <div className={styles.slideToggleMenu}>
-      <button className={styles.toggleButton} onClick={toggleMenu}>
-        {isOpen ? "Close" : "Menu"}
+      <button className={styles.hamburgerButton} onClick={toggleMenu}>
+        <div className={isOpen ? styles.closeIcon : styles.hamburgerIcon}>
+          <span className={styles.iconBar}></span>
+          <span className={styles.iconBar}></span>
+          <span className={styles.iconBar}></span>
+        </div>
       </button>
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
