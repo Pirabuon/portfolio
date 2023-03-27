@@ -9,9 +9,9 @@ html {
   font-family: "Baloo Thambi 2", cursive;
 }
 body {
-  font-family: sans-serif;
-  padding: 10px 20px;
-  line-height: 1.6;
+    padding: 10px 20px;
+    line-height: 1.6;
+    padding-top: 4rem;
 }
 
 .header-nav ul {
@@ -70,13 +70,18 @@ h1.siteTitle {
   padding: 0 1rem 1rem 1rem;
 }
 .postCont h3 {
-  font-size: 1.25rem;
+    font-size: 1.25rem;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap;
 }
 
 .desc {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-top: -0.75rem;
+    font-size: .9rem;
+    opacity: .8;
+    margin-top: -0.75rem;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap;
+  display:none;
 }
 img.mainImg {
   width: 100%;
