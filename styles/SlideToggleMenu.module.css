@@ -18,14 +18,14 @@
 
 .menu {
   position: fixed;
-  top: 4rem;
+  top: 0rem;
   right: 0rem;
   left: unset;
   float: right;
   color: #fff;
   width: auto;
   text-align: right;
-  background: #141414;
+  background: #ffffff;
   padding: 1rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   transform: translateX(100vw);
