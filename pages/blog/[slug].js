@@ -64,7 +64,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date`
+    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date,featured_image_url`
   );
   const post = await res.json();
 
