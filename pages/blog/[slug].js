@@ -6,19 +6,33 @@ export default function Post(props) {
   const router = useRouter();
   const { title, content, author, date, featured_image_url } = props.post;
 
+  // Extract the first image from the post content if there's no featured image
+  let firstImageUrl;
+  if (!featured_image_url) {
+    const match = content.rendered.match(/<img.+?src="(.+?)"/);
+    if (match) {
+      firstImageUrl = match[1];
+    }
+  }
+
   return (
     <>
       <button className={styles.btn}>
-        <Link href="/blog">
+        <Link href="/">
           <small>&laquo; back</small>
         </Link>
       </button>
       <div className={styles.meta}>
-        <p>{new Date(date).toLocaleDateString()} - {author.name}</p>
+        <p>
+          {new Date(date).toLocaleDateString()} - {author.name}
+        </p>
       </div>
-      {featured_image_url && (
+      {(featured_image_url || firstImageUrl) && (
         <div className={styles.featuredImage}>
-          <img src={featured_image_url} alt={title.rendered} />
+          <img
+            src={featured_image_url || firstImageUrl}
+            alt={title.rendered}
+          />
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
@@ -27,12 +41,13 @@ export default function Post(props) {
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
       ></div>
-      <button className={styles.button} onClick={() => router.push("/blog")}>
+      <button className={styles.button} onClick={() => router.push("/")}>
         Back
       </button>
     </>
   );
 }
+
 
 
 export async function getStaticPaths() {
