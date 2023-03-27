@@ -12,6 +12,9 @@ export default function Post(props) {
     "https://valaakam.com/"
   );
 
+  // Extract the first image from the post content
+  const firstImageUrl = content.rendered.match(/<img.+?src=(['"])(.+?)\1/)?.[2];
+
   return (
     <>
       <button className={styles.btn}>
@@ -24,9 +27,9 @@ export default function Post(props) {
           {new Date(date).toLocaleDateString()} - {author.name}
         </p>
       </div>
-      {valaakamImageUrl && (
+      {(featured_image_url || firstImageUrl) && (
         <div className={styles.featuredImage}>
-          <img src={valaakamImageUrl} alt={title.rendered} />
+          <img src={valaakamImageUrl || firstImageUrl} alt={title.rendered} />
         </div>
       )}
       <h2 className={styles.title}>{title.rendered}</h2>
