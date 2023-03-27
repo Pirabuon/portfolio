@@ -7,7 +7,6 @@
 }
 
 .toggleButton {
-  position: absolute;
   top: 0;
   right: 0;
   padding: 10px;
@@ -15,6 +14,7 @@
   border: none;
   cursor: pointer;
   z-index:105;
+  position: relative;
 }
 
 .menu {
