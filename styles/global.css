@@ -74,6 +74,7 @@ h1.siteTitle {
 }
 .postCont h3 {
     font-size: 1rem;
+  margin-bottom:0;
     overflow-wrap: break-word !important;
     white-space: pre-wrap;
 }
@@ -128,6 +129,9 @@ img.mainImg {
 }
 .stickMenu ul li img {
   margin: auto;
+}
+.swiper {
+    margin-top: 1.25rem;
 }
 .promoItem {
     text-align: center;
