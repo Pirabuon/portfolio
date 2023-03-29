@@ -15,7 +15,7 @@ function ShareButton({ text, url }) {
 
   return (
     <button onClick={share}>
-      Share via Native Apps
+      Share
     </button>
   );
 }
