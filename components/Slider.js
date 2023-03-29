@@ -1,27 +1,55 @@
-import { useRef, useEffect } from "react";
-import Swiper from "swiper";
-import "swiper/css/swiper.css";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
-const Slider = () => {
-  const sliderRef = useRef(null);
+import SwiperCore, { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 
-  useEffect(() => {
-    new Swiper(sliderRef.current, {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      loop: true,
-    });
-  }, []);
+SwiperCore.use([Autoplay]);
 
+export default function App() {
   return (
-    <div ref={sliderRef} className="swiper-container">
-      <div className="swiper-wrapper">
-        <div className="swiper-slide">Slide 1</div>
-        <div className="swiper-slide">Slide 2</div>
-        <div className="swiper-slide">Slide 3</div>
-      </div>
-    </div>
+    <>
+      <Swiper
+          slidesPerView={3}
+          speed={1000}
+          loop={true}
+          autoplay={{ delay: 3000 }}
+          breakpoints={{
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
+        className="mySwiper specialPromo"
+      >
+        <SwiperSlide>
+          <div className="promoItem">Hello</div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="promoItem">World</div>
+        </SwiperSlide>
+  <SwiperSlide>
+          <div className="promoItem">Hello</div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="promoItem">World</div>
+        </SwiperSlide>
+  <SwiperSlide>
+          <div className="promoItem">Hello</div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="promoItem">World</div>
+        </SwiperSlide>
+      </Swiper>
+    </>
   );
-};
-
-export default Slider;
+}
