@@ -2,11 +2,18 @@ import styles from "../styles/SlideToggleMenu.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ShareButton from "./Share";
+import { useEffect, useState } from 'react';
 
 function StickyMenu() {
   const router = useRouter();
-  const currentUrl = window.location.href;
-  const currentTitle = document.title;
+
+    const [url, setUrl] = useState('');
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    setUrl(window.location.href);
+    setTitle(document.title);
+  }, []);
   
   return (
     <div className={styles.stickMenuHolder}>
