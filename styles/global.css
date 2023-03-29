@@ -127,6 +127,14 @@ img.mainImg {
 .stickMenu ul li img {
   margin: auto;
 }
+.promoItem {
+    text-align: center;
+    background: #ffffff;
+    padding: 0.125rem;
+    border-radius: 5px;
+    transform: scale(0.95);
+    border: 1px solid #d7d7d7;
+}
 @media (max-width: 768.98px) {
   .lister {
     column-count: 1;
