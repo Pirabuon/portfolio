@@ -1,6 +1,7 @@
 import styles from "../styles/SlideToggleMenu.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ShareButton from "./Share";
 
 function StickyMenu() {
   const router = useRouter();
@@ -40,11 +41,10 @@ function StickyMenu() {
             Name
           </li>
           <li>
-            <img
-              src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-              style={{ width: "20px", height: "auto" }}
+            <ShareButton
+              text="Check out this cool thing I found!"
+              url="https://example.com/cool-thing"
             />
-            Name
           </li>
         </ul>
       </div>
