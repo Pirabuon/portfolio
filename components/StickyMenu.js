@@ -5,7 +5,9 @@ import ShareButton from "./Share";
 
 function StickyMenu() {
   const router = useRouter();
-
+  const currentUrl = window.location.href;
+  const currentTitle = document.title;
+  
   return (
     <div className={styles.stickMenuHolder}>
       <div className="stickMenu">
@@ -42,8 +44,8 @@ function StickyMenu() {
           </li>
           <li>
             <ShareButton
-              text="Check out this cool thing I found!"
-              url="https://example.com/cool-thing"
+              text={currentTitle}
+              url={currentUrl}
             />
           </li>
         </ul>
