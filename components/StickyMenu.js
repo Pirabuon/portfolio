@@ -51,9 +51,10 @@ function StickyMenu() {
           </li>
           <li>
             <ShareButton
-              text={currentTitle}
-              url={currentUrl}
-            />
+        text="Check out this cool thing I found!"
+        url={url}
+        title={title}
+      />
           </li>
         </ul>
       </div>
