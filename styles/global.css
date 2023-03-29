@@ -14,7 +14,9 @@ body {
     padding-top: 4rem;
   background:#f9f9f9;
 }
-
+iframe {
+    width: 100% !important;
+}
 .header-nav ul {
   margin: 0;
   padding: 0;
