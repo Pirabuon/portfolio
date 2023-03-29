@@ -32,7 +32,4 @@ button.btn {
   z-index:99;
 }
 
-p{
-overflow-wrap: break-word!important;
-    white-space: pre-wrap;
-}
+
