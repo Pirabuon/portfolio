@@ -137,6 +137,14 @@ img.mainImg {
 .stickMenu ul li img {
   margin: auto;
 }
+.stickMenu li button {
+    border-radius: 5px;
+    box-shadow: none;
+    border: 0px solid;
+    padding: 0.5rem 1rem;
+    background: #000;
+    color: #FFF;
+}
 .swiper {
     margin-top: 1.25rem;
 }
