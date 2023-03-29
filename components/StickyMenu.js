@@ -8,11 +8,9 @@ function StickyMenu() {
   const router = useRouter();
 
     const [url, setUrl] = useState('');
-  const [title, setTitle] = useState('');
 
   useEffect(() => {
     setUrl(window.location.href);
-    setTitle(document.title);
   }, []);
   
   return (
@@ -51,9 +49,8 @@ function StickyMenu() {
           </li>
           <li>
             <ShareButton
-        text="Check out this cool thing I found!"
+        text="Good to share !"
         url={url}
-        title={title}
       />
           </li>
         </ul>
