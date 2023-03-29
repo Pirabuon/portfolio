@@ -21,7 +21,7 @@
   position: fixed;
   top: 0rem;
   left: 0;
-  float: right;
+  float: left;
   color: #fff;
   width: auto;
   text-align: left;
@@ -30,7 +30,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   transform: translateX(100vw);
   height: 100vh;
-  width: 60vw;
+  width: 70vw;
     z-index: 100;
 padding-top:5rem;
   transition: all 0.3s;
