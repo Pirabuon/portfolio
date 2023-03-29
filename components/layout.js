@@ -13,7 +13,6 @@ export default function Layout({ children }) {
         <div className="topMenuBar">
           <SlideToggleMenu />
           <StickyMenu />
-          <Slider />
 
           <Link
             className={
@@ -26,6 +25,8 @@ export default function Layout({ children }) {
             <h1 className="siteTitle">Valaakam</h1>
           </Link>
         </div>
+          <Slider />
+
 
         {/* 
  <nav className="header-nav">
