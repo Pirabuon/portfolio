@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SlideToggleMenu from "../components/SlideToggleMenu";
+import StickyMenu from "../components/StickyMenu";
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
       <div>
         <div className="topMenuBar">
           <SlideToggleMenu />
+          <StickyMenu />
 
           <Link
             className={
