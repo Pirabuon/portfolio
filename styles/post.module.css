@@ -31,3 +31,8 @@ button.btn {
     left: 1rem;
   z-index:99;
 }
+
+p{
+overflow-wrap: break-word!important;
+    white-space: pre-wrap;
+}
