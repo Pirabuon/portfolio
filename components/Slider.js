@@ -43,7 +43,7 @@ export default function App() {
         <div className="promoItem">cat</div>
       </SwiperSlide>
       <SwiperSlide key={6}>
-        <div className="promoItem">list</div>
+        <div className="promoItem">ListME</div>
       </SwiperSlide>
     </Swiper>
   );
