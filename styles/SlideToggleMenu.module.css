@@ -20,12 +20,11 @@
 .menu {
   position: fixed;
   top: 0rem;
-  right: 0rem;
-  left: unset;
+  left: 0;
   float: right;
   color: #fff;
   width: auto;
-  text-align: right;
+  text-align: left;
   background: #ffffff;
   padding: 1rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
