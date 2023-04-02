@@ -176,6 +176,7 @@ img.mainImg {
 .promoItem:active a img{
    filter:invert(1);
 }
+
 @media (max-width: 768.98px) {
   .lister {
     column-count: 1;
@@ -187,4 +188,19 @@ img.mainImg {
     margin: 0%;
     margin-bottom: 1.25rem;
   }
+  
+  .postItem img.mainImg {
+    width: 125px;
+    float: left;
+    margin-right: 1rem;
+  }
+    .lister a:nth-child(1) img.mainImg {
+    width: 100%;
+}
+.postCont {
+    padding: 0 1rem 1rem;
+    min-height: 100px;
+}
+  
+  
 }
