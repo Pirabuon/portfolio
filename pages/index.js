@@ -1,8 +1,10 @@
 import Link from "next/link";
+import catScience from "../components/catScience.js";
 
 export default function Blog(props) {
   return (
     <>
+    <catScience/>
       <h2></h2>
     <div className="lister">
       {props.posts.map((post, index) => {
