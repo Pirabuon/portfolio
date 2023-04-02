@@ -193,15 +193,14 @@ img.mainImg {
  .home .postItem img.mainImg {
     width: 125px;
     float: left;
-    margin-right: 1rem;
-  }
+    margin-right: 0.5rem;
+}
    .home .lister a:nth-child(1) img.mainImg {
     width: 100%;
 }
 .home .postCont {
-    padding: 0 1rem 1rem;
-    min-height: 100px;
+    padding: 0 0.5rem 1rem 0.5rem;
+    display: flow-root;
 }
-  
   
 }
