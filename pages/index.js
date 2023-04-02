@@ -83,12 +83,12 @@ export default function Blog(props) {
 
 export async function getStaticProps() {
   const scienceResponse = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=7&per_page=5"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=7&per_page=4"
   );
   const scienceData = await scienceResponse.json();
 
   const bioResponse = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=8&per_page=5"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=8&per_page=4"
   );
   const bioData = await bioResponse.json();
 
