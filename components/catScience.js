@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Blog(props) {
+export default function CatScienceP(props) {
   return (
     <>
       <h2>Blog Title Goes Here</h2>
