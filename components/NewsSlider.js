@@ -1,99 +1,76 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, GrabCursor } from "swiper";
+import "swiper/swiper-bundle.min.css";
 import Link from "next/link";
-import { Navigation, Pagination, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { GrabCursor } from 'swiper/core';
+import { useRouter } from "next/router";
 
-import 'swiper/swiper-bundle.css';
+SwiperCore.use([Autoplay, GrabCursor]);
 
-SwiperCore.use([Navigation, Pagination, Autoplay, GrabCursor]);
-
-
-export default function Blog(props) {
-  const [swiper, setSwiper] = useState(null);
-
-  const goPrev = () => {
-    if (swiper !== null) {
-      swiper.slidePrev();
-    }
-  };
-
-  const goNext = () => {
-    if (swiper !== null) {
-      swiper.slideNext();
-    }
-  };
+export default function App(props) {
+  const router = useRouter();
+  const [slides, setSlides] = useState([]);
 
   return (
-    <>
-      <h2>Blog Title Goes Here</h2>
-      <div className="swiper-container">
-        <div className="swiper-wrapper">
-          <Swiper
-            onSwiper={setSwiper}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000 }}
-            loop={true}
-            spaceBetween={30}
-            slidesPerView={1}
-            centeredSlides={true}
-            breakpoints={{
-              // when window width is >= 640px
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              // when window width is >= 768px
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-            }}
-          >
-            {props.posts.map((post, index) => {
-              let featuredImageUrl =
-                post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
-                  ?.medium?.source_url;
-              if (!featuredImageUrl) {
-                // use first image from post if no featured image available
-                const matches =
-                  post.content.rendered.match(/<img.*?src="(.*?)"/);
-                if (matches) {
-                  featuredImageUrl = matches[1];
-                }
-              }
-              return (
-                <SwiperSlide key={index}>
-                  <Link href={`/blog/${post.slug}`}>
-                    <div className="postItem">
-                      {featuredImageUrl && (
-                        <img
-                          className="mainImg"
-                          src={featuredImageUrl}
-                          alt={post.title.rendered}
-                        />
-                      )}
-                      <div className="postCont">
-                        <h3>{post.title.rendered}</h3>
-                        <div
-                          className="desc"
-                          dangerouslySetInnerHTML={{
-                            __html: post.excerpt.rendered,
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
-        <div className="swiper-button-prev" onClick={goPrev}></div>
-        <div className="swiper-button-next" onClick={goNext}></div>
-      </div>
-    </>
+    <Swiper
+      slidesPerView={3}
+      speed={1000}
+      grabCursor={true}
+      autoplay={{ delay: 3000 }}
+      breakpoints={{
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 50,
+        },
+      }}
+      className="mySwiper specialPromo"
+    >
+      {props.posts.map((post, index) => {
+        let featuredImageUrl =
+          post?._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
+            ?.medium?.source_url;
+        if (!featuredImageUrl) {
+          // use first image from post if no featured image available
+          const matches =
+            post.content.rendered.match(/<img.*?src="(.*?)"/);
+          if (matches) {
+            featuredImageUrl = matches[1];
+          }
+        }
+        return (
+          <SwiperSlide key={index}>
+            <Link href={`/blog/${post.slug}`}>
+              <div className="postItem">
+                {featuredImageUrl && (
+                  <img
+                    className="mainImg"
+                    src={featuredImageUrl}
+                    alt={post.title.rendered}
+                  />
+                )}
+                <div className="postCont">
+                  <h3>{post.title.rendered}</h3>
+                  <div
+                    className="desc"
+                    dangerouslySetInnerHTML={{
+                      __html: post.excerpt.rendered,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </Link>
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
   );
 }
 
