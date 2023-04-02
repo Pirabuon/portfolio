@@ -156,14 +156,25 @@ img.mainImg {
     transform: scale(0.95);
     border: 1px solid #d7d7d7;
   padding: 0.5rem;
+  transition:all 0.3s;
+}
+.promoItem:active {
+    background: #635dff;
+    transition:all 0.3s;
 }
 .promoItem a {
     font-size: 0.8rem;
     display: grid;
     text-align: center;
 }
+.promoItem:active a{
+   color:#fff;
+}
 .promoItem a img {
     margin: auto;
+}
+.promoItem:active a img{
+   filter:invert(1);
 }
 @media (max-width: 768.98px) {
   .lister {
