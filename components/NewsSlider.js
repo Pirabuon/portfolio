@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, GrabCursor } from 'swiper';
 import 'swiper/swiper-bundle.css';
