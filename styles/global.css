@@ -189,15 +189,15 @@ img.mainImg {
     margin-bottom: 1.25rem;
   }
   
-  .postItem img.mainImg {
+ .home .postItem img.mainImg {
     width: 125px;
     float: left;
     margin-right: 1rem;
   }
-    .lister a:nth-child(1) img.mainImg {
+   .home .lister a:nth-child(1) img.mainImg {
     width: 100%;
 }
-.postCont {
+.home .postCont {
     padding: 0 1rem 1rem;
     min-height: 100px;
 }
