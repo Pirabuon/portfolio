@@ -2,6 +2,7 @@ import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 SwiperCore.use([Autoplay]);
 
