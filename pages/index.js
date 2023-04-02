@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export default function Blog(props) {
   return (
+    <>
     <div className="home">
       <h2>Science</h2>
       <div className="lister">
@@ -73,6 +74,7 @@ export default function Blog(props) {
             </Link>
           );
         })}
+      </div>
       </div>
     </>
   );
