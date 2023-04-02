@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, GrabCursor } from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-SwiperCore.use([Autoplay, GrabCursor]);
+SwiperCore.use([Autoplay]);
 
 export default function App(props) {
   const router = useRouter();
@@ -15,7 +15,6 @@ export default function App(props) {
     <Swiper
       slidesPerView={3}
       speed={1000}
-      grabCursor={true}
       autoplay={{ delay: 3000 }}
       breakpoints={{
         640: {
