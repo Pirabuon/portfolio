@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import SwiperCore from 'swiper/core';
-import 'swiper/swiper-bundle.css';
-import { Navigation, Pagination, Autoplay, GrabCursor } from 'swiper/core';
-SwiperCore.use([Navigation, Pagination, Autoplay, GrabCursor]);
+import { Navigation, Pagination, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { GrabCursor } from 'swiper/core';
 
+import 'swiper/swiper-bundle.css';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, GrabCursor]);
 
