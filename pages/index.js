@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NewsSlider from "../components/NewsSlider.js";
 
 export default function Blog(props) {
   return (
