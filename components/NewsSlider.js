@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, GrabCursor } from 'swiper';
+import 'swiper/swiper-bundle.css';
 
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+SwiperCore.use([Navigation, Pagination, Autoplay, GrabCursor]);
+
 
 export default function Blog(props) {
   const [swiper, setSwiper] = useState(null);
