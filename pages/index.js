@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Blog(props) {
   return (
     <>
-    <NewsSlider/>
     <div className="home">
       <h2>Science</h2>
       <div className="lister">
