@@ -25,6 +25,7 @@ export default function Layout({ children }) {
             <h1 className="siteTitle">Valaakam</h1>
           </Link>
         </div>
+          <Slider />
 
 
         {/* 
