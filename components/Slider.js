@@ -1,17 +1,52 @@
-import SwiperCore, { Autoplay } from "swiper";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
+import SwiperCore, { Autoplay, GrabCursor } from "swiper";
+import "swiper/swiper-bundle.min.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-SwiperCore.use([Autoplay]);
+SwiperCore.use([Autoplay, GrabCursor]);
 
 export default function App() {
+  const router = useRouter();
+  const [slides, setSlides] = useState([
+    {
+      id: 1,
+      href: "/science",
+      label: "அறிவியல்",
+      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+    },
+    {
+      id: 2,
+      href: "/abnormal",
+      label: "அமானுடம்",
+      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+    },
+    {
+      id: 3,
+      href: "/history",
+      label: "வரலாறு",
+      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+    },
+    {
+      id: 4,
+      href: "/mystery",
+      label: "வினோதங்கள்",
+      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+    },
+    {
+      id: 5,
+      href: "/scholars",
+      label: "மேதைகள்",
+      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+    },
+  ]);
+
   return (
     <Swiper
       slidesPerView={3}
       speed={1000}
-      loop={true}
+      grabCursor={true}
       autoplay={{ delay: 3000 }}
       breakpoints={{
         640: {
@@ -29,97 +64,18 @@ export default function App() {
       }}
       className="mySwiper specialPromo"
     >
-      <SwiperSlide key={1}>
-        <div className="promoItem">
-         <Link
-              className={
-                router.pathname == "/science" || router.pathname == "/blog/[slug]"
-                  ? "active"
-                  : ""
-              }
-              href="/"
-            >
-              <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-                style={{ width: "20px", height: "auto" }}
-              />
-              அறிவியல்
+      {slides.map((slide) => (
+        <SwiperSlide key={slide.id}>
+          <div className="promoItem">
+            <Link href={slide.href}>
+              <a className={router.pathname.includes(slide.href) ? "active" : ""}>
+                <img src={slide.imgUrl} style={{ width: "20px", height: "auto" }} />
+                {slide.label}
+              </a>
             </Link>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide key={2}>
-        <div className="promoItem">
-         <Link
-              className={
-                router.pathname == "/abnormal" || router.pathname == "/blog/[slug]"
-                  ? "active"
-                  : ""
-              }
-              href="/"
-            >
-              <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-                style={{ width: "20px", height: "auto" }}
-              />
-              அமானுடம்
-            </Link>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide key={3}>
-        <div className="promoItem">
-         <Link
-              className={
-                router.pathname == "/history" || router.pathname == "/blog/[slug]"
-                  ? "active"
-                  : ""
-              }
-              href="/"
-            >
-              <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-                style={{ width: "20px", height: "auto" }}
-              />
-              வரலாறு
-            </Link>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide key={4}>
-        <div className="promoItem">
-         <Link
-              className={
-                router.pathname == "/mystery" || router.pathname == "/blog/[slug]"
-                  ? "active"
-                  : ""
-              }
-              href="/"
-            >
-              <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-                style={{ width: "20px", height: "auto" }}
-              />
-              வினோதங்கள்
-            </Link>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide key={5}>
-        <div className="promoItem">
-         <Link
-              className={
-                router.pathname == "/scholars" || router.pathname == "/blog/[slug]"
-                  ? "active"
-                  : ""
-              }
-              href="/"
-            >
-              <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
-                style={{ width: "20px", height: "auto" }}
-              />
-              மேதைகள்
-            </Link>
-        </div>
-      </SwiperSlide>
-     
+          </div>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
