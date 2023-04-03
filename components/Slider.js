@@ -4,7 +4,7 @@ import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from './link.module.css';
+import styles from "../styles/link.module.css";
 
 SwiperCore.use([Autoplay]);
 
