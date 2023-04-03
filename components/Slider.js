@@ -68,7 +68,7 @@ export default function App() {
         <SwiperSlide key={slide.id}>
           <div className="promoItem">
             <Link href={slide.href}>
-              <a className={`${router.pathname.includes(slide.href) ? "active" : ""} ${styles.link}`}>
+              <a className={`promoLink ${router.pathname.includes(slide.href) ? "active" : ""}`}>
                 <img src={slide.imgUrl} style={{ width: "20px", height: "auto" }} />
                 {slide.label}
               </a>
