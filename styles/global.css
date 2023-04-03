@@ -149,7 +149,6 @@ img.mainImg {
 .swiper {
     margin-top: 1.25rem;
 }
-
 .promoItem {
     text-align: center;
     background: #ffffff;
@@ -183,26 +182,25 @@ img.mainImg {
   .lister {
     column-count: 1;
 }
-.postItem {
+  .postItem {
     width: 100%;
     float: unset;
-    box-shadow: 0 0 50px rgba(0,0,0,.0);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
     margin: 0%;
-    background: #f8f8f8;
-}
+    margin-bottom: 1.25rem;
+  }
   
  .home .postItem img.mainImg {
     width: 100px;
     float: left;
     margin-right: 0.5rem;
 }
-  
-  .home .lister a:nth-child(1) .postItem {
-    box-shadow: 0 0 50px rgba(0,0,0,0.1);
-    background: #ffffff;
-}
    .home .lister a:nth-child(1) img.mainImg {
     width: 100%;
+}
+
+  .home .firstList .postItem img.mainImg {
+    width: 100% !important;
 }
 .home .postCont {
     padding: 0 0.5rem 1rem 0.5rem;
