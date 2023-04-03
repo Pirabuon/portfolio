@@ -149,6 +149,7 @@ img.mainImg {
 .swiper {
     margin-top: 1.25rem;
 }
+
 .promoItem {
     text-align: center;
     background: #ffffff;
@@ -182,18 +183,23 @@ img.mainImg {
   .lister {
     column-count: 1;
 }
-  .postItem {
+.postItem {
     width: 100%;
     float: unset;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 50px rgba(0,0,0,.0);
     margin: 0%;
-    margin-bottom: 1.25rem;
-  }
+    background: #f8f8f8;
+}
   
  .home .postItem img.mainImg {
-    width: 125px;
+    width: 100px;
     float: left;
     margin-right: 0.5rem;
+}
+  
+  .home .lister a:nth-child(1) .postItem {
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    background: #ffffff;
 }
    .home .lister a:nth-child(1) img.mainImg {
     width: 100%;
