@@ -14,31 +14,31 @@ export default function App() {
       id: 1,
       href: "/science",
       label: "அறிவியல்",
-      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+      imgUrl: "https://valaakam.com/wp-content/uploads/2023/04/atom.png",
     },
     {
       id: 2,
       href: "/abnormal",
       label: "அமானுடம்",
-      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+      imgUrl: "https://valaakam.com/wp-content/uploads/2023/04/ufo.png",
     },
     {
       id: 3,
       href: "/history",
       label: "வரலாறு",
-      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+      imgUrl: "https://valaakam.com/wp-content/uploads/2023/04/history.png",
     },
     {
       id: 4,
       href: "/mystery",
       label: "வினோதங்கள்",
-      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+      imgUrl: "https://valaakam.com/wp-content/uploads/2023/04/mystery.png",
     },
     {
       id: 5,
       href: "/scholars",
       label: "மேதைகள்",
-      imgUrl: "https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp",
+      imgUrl: "https://valaakam.com/wp-content/uploads/2023/04/einstein.png",
     },
   ]);
 
