@@ -4,6 +4,7 @@ export default function Blog(props) {
   return (
     <>
     <div className="home">
+    <div className="firstList">
       <h2>Science</h2>
       <div className="lister">
         {props.sciencePosts.map((post, index) => {
@@ -38,6 +39,7 @@ export default function Blog(props) {
             </Link>
           );
         })}
+      </div>
       </div>
 
 
