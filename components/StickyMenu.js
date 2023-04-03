@@ -27,25 +27,25 @@ function StickyMenu() {
               href="/"
             >
               <img
-                src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
+                src="https://valaakam.com/wp-content/uploads/2023/04/home.png"
                 style={{ width: "20px", height: "auto" }}
               />
-              Name
+              Home
             </Link>
           </li>
           <li>
             <img
-              src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
+              src="https://valaakam.com/wp-content/uploads/2023/04/flash.png"
               style={{ width: "20px", height: "auto" }}
             />
-            Name
+            Flash news
           </li>
           <li>
             <img
-              src="https://www.meilleurservice.com/images/cat_22-03-2023_43cat_21-09-2022_43friend.webp"
+              src="https://valaakam.com/wp-content/uploads/2023/04/menu.png"
               style={{ width: "20px", height: "auto" }}
             />
-            Name
+            Categories
           </li>
           <li>
             <ShareButton
