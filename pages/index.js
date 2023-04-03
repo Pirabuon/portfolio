@@ -5,7 +5,6 @@ export default function Blog(props) {
     <>
     <div className="home">
     <div className="firstList">
-      <h2>Science</h2>
       <div className="lister">
         {props.sciencePosts.map((post, index) => {
           let featuredImageUrl =
@@ -43,7 +42,7 @@ export default function Blog(props) {
       </div>
 
 
-      <h2>flash</h2>
+      <h2>அறிவியல்</h2>
 <div className="lister">
   {props.flashPosts.map((post, index) => {
     let featuredImageUrl =
@@ -80,7 +79,7 @@ export default function Blog(props) {
 </div>
 
 
-      <h2>Bio</h2>
+      <h2>அமானுடம்</h2>
       <div className="lister">
         {props.bioPosts.map((post, index) => {
           let featuredImageUrl =
@@ -123,18 +122,18 @@ export default function Blog(props) {
 
 export async function getStaticProps() {
   const scienceResponse = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=7&per_page=4"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&per_page=4"
   );
   const scienceData = await scienceResponse.json();
 
   const bioResponse = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=8&per_page=4"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=7&per_page=4"
   );
   const bioData = await bioResponse.json();
 
 
   const flashResponse = await fetch(
-    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=8&per_page=4"
+    "https://valaakam.com/wp-json/wp/v2/posts?_embed=true&categories=4&per_page=4"
   );
   const flashData = await flashResponse.json();
 
