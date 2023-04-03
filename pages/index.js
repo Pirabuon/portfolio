@@ -5,6 +5,7 @@ export default function Blog(props) {
     <>
     <div className="home">
     <div className="firstList">
+<h2></h2>
       <div className="lister">
         {props.sciencePosts.map((post, index) => {
           let featuredImageUrl =
