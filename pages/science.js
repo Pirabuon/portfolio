@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Blog(props) {
   return (
     <>
-      <h2>Blog Title Goes Here</h2>
+      <h2>அறிவியல்</h2>
         <div className="lister">
       {props.posts.map((post, index) => {
         let featuredImageUrl =
