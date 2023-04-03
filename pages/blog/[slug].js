@@ -2,6 +2,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../../styles/post.module.css";
 
+// Function to check if the link is internal or external
+function isInternalLink(href) {
+  return href.startsWith("/") || href.startsWith("#");
+}
+
 export default function Post(props) {
   const router = useRouter();
   const { title, content, author, date, featured_image_url, acf } = props.post;
@@ -28,13 +33,12 @@ export default function Post(props) {
         className={styles.cont}
         dangerouslySetInnerHTML={{ __html: content.rendered }}
       ></div>
-      <button className={styles.button} onClick={() => router.push("/blog")}>
-        Back
+      <button className={styles.button} onClick={() => router.back()}>
+        முன் செல்ல
       </button>
     </>
   );
 }
-
 
 export async function getStaticPaths() {
   const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=100");
@@ -60,7 +64,6 @@ export async function getStaticPaths() {
     fallback: "blocking",
   };
 }
-
 
 export async function getStaticProps(context) {
   const slug = context.params.slug;
