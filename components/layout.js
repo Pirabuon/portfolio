@@ -16,11 +16,11 @@ export default function Layout({ children }) {
 
           <Link
             className={
-              router.pathname == "/blog" || router.pathname == "/blog/[slug]"
+              router.pathname == "/" || router.pathname == "/"
                 ? "active"
                 : ""
             }
-            href="/blog"
+            href="/"
           >
             <h1 className="siteTitle">Valaakam</h1>
           </Link>
