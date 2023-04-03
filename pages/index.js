@@ -153,6 +153,18 @@ export async function getStaticProps() {
     }),
   }));
 
+  const modifiedBioData = bioData.map((post) => ({
+    ...post,
+    author_name: post?._embedded?.author?.[0]?.name ?? "Unknown Author",
+    category_name:
+      post?._embedded?.["wp:term"]?.[0]?.[0]?.name ?? "Uncategorized",
+    date: new Date(post.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  }));
+  
   const modifiedFlashData = flashData.map((post) => ({
     ...post,
     author_name: post?._embedded?.author?.[0]?.name ?? "Unknown Author",
