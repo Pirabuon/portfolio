@@ -1,4 +1,4 @@
-a:hover {
+.promoLink:hover {
   color: red;
   text-decoration: underline;
 }
