@@ -42,10 +42,12 @@ export default function SlideToggleMenu() {
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
+  
+  function handleClick(id) {
+    setIsOpen(false);
+  }
 
-
-
-return (
+  return (
     <div className={styles.slideToggleMenu}>
       <button className={styles.hamburgerButton} onClick={toggleMenu}>
         <div className={isOpen ? styles.closeIcon : styles.hamburgerIcon}>
@@ -56,8 +58,8 @@ return (
       </button>
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
- {slides.map((slide) => (
-            <li key={slide.id}>
+          {slides.map((slide) => (
+            <li key={slide.id} onClick={() => handleClick(slide.id)}>
               <Link href={slide.href}>
                 <a className={`${router.pathname === slide.href ? "active" : ""}`}>
                   <img src={slide.imgUrl} style={{ width: "20px", height: "auto" }} />
