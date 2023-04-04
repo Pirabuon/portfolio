@@ -43,20 +43,20 @@ export default function SlideToggleMenu() {
     setIsOpen(!isOpen);
   }
 
+
+
 return (
-  <div className={styles.slideToggleMenu}>
-    <button className={styles.hamburgerButton} onClick={toggleMenu}>
-      <div className={isOpen ? styles.closeIcon : styles.hamburgerIcon}>
-        <span className={styles.iconBar}></span>
-        <span className={styles.iconBar}></span>
-        <span className={styles.iconBar}></span>
-      </div>
-    </button>
-    {/* Add the closing curly brace here */}
-    {isOpen && (
+    <div className={styles.slideToggleMenu}>
+      <button className={styles.hamburgerButton} onClick={toggleMenu}>
+        <div className={isOpen ? styles.closeIcon : styles.hamburgerIcon}>
+          <span className={styles.iconBar}></span>
+          <span className={styles.iconBar}></span>
+          <span className={styles.iconBar}></span>
+        </div>
+      </button>
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
-          {slides.map((slide) => (
+ {slides.map((slide) => (
             <li key={slide.id}>
               <Link href={slide.href}>
                 <a className={`${router.pathname === slide.href ? "active" : ""}`}>
@@ -68,7 +68,6 @@ return (
           ))}
         </ul>
       </nav>
-    )}
-  </div>
-);
+    </div>
+  );
 }
