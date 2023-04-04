@@ -3,7 +3,7 @@ import Link from "next/link"; // Added import for Link component
 import { useRouter } from "next/router"; // Added import for useRouter hook
 import styles from "../styles/SlideToggleMenu.module.css";
 
-export default function SlideToggleMenu() { // Removed the duplicate function declaration
+export default function SlideToggleMenu() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [slides, setSlides] = useState([
@@ -71,4 +71,4 @@ return (
     )}
   </div>
 );
-
+}
