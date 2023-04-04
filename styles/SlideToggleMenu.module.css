@@ -45,6 +45,7 @@ padding-top:5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+      padding-left: 1rem;
 }
 
 .menu li {
@@ -53,10 +54,14 @@ padding-top:5rem;
 }
 
 .menu a {
-  display: block;
-  padding: 10px;
-  color: #000;
-  text-decoration: none;
+    display: block;
+    padding: 0 0 10px 0;
+    color: #000;
+    text-decoration: none;
+}
+.menu a img{
+      margin-right: 0.5rem;
+    transform: translateY(5px);
 }
 
 .menu a:hover {
