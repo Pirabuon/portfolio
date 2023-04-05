@@ -2,6 +2,8 @@ import styles from "../styles/SlideToggleMenu.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ShareButton from "./Share";
+import GridMenu from "./GridMenu";
+
 import { useEffect, useState } from 'react';
 
 function StickyMenu() {
@@ -38,7 +40,7 @@ function StickyMenu() {
               src="https://valaakam.com/wp-content/uploads/2023/04/flash.png"
               style={{ width: "20px", height: "auto" }}
             />
-            Flash news
+            Flash news <GridMenu/>
           </li>
           <li>
             <img
