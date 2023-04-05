@@ -56,7 +56,7 @@ export default function SlideToggleMenu() {
             />
             Categories
           </li>
-      <nav className={`${styles.menuGrid} ${isOpen ? styles.isOpen : ""}`}>
+      <nav className={`${styles.menuGrid} ${isOpen ? styles.isOpenGrid : ""}`}>
         <ul>
           {slides.map((slide) => (
             <li key={slide.id} onClick={() => handleClick(slide.id)}>
