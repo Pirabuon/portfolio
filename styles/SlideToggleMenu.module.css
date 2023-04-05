@@ -150,3 +150,7 @@ padding-top:5rem;
     padding: 5rem 1rem 1rem;
     transition: all .3s;
 }
+
+.isOpenGrid{
+  transform: translateX(0px);
+}
