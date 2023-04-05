@@ -48,10 +48,14 @@ export default function SlideToggleMenu() {
   }
 
   return (
-    <div className={styles.slideToggleMenu}>
-      <button className={styles.hamburgerButton} onClick={toggleMenu}>
-     grid
-      </button>
+    <div className={styles.slideToggleMenuGrid}>
+          <li className={styles.hamburgerButton} onClick={toggleMenu}>
+            <img
+              src="https://valaakam.com/wp-content/uploads/2023/04/menu.png"
+              style={{ width: "20px", height: "auto" }}
+            />
+            Categories
+          </li>
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
           {slides.map((slide) => (
