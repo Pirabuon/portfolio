@@ -143,7 +143,7 @@ padding-top:5rem;
     text-align: left;
     background: #f1f1f1;
     box-shadow: 0 0 30px rgba(0,0,0,0);
-    transform: translateX(-101vw);
+    transform: translateX(-125vw);
     height: calc(100vh - 100px);
     width: 100vw;
     z-index: 100;
