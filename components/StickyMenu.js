@@ -40,15 +40,10 @@ function StickyMenu() {
               src="https://valaakam.com/wp-content/uploads/2023/04/flash.png"
               style={{ width: "20px", height: "auto" }}
             />
-            Flash news <GridMenu/>
+            Flash news 
           </li>
-          <li>
-            <img
-              src="https://valaakam.com/wp-content/uploads/2023/04/menu.png"
-              style={{ width: "20px", height: "auto" }}
-            />
-            Categories
-          </li>
+
+<GridMenu/>
           <li>
             <ShareButton
         text="Good to share !"
