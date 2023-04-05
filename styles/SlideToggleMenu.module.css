@@ -150,7 +150,15 @@ padding-top:5rem;
     padding: 5rem 1rem 1rem;
     transition: all .3s;
 }
-
+.menuGrid ul {
+    display: flow-root;
+    flex-direction: column;
+}
+.menuGrid ul li {
+    width: 33%;
+    float: left;
+    margin-bottom: 2rem;
+}
 .isOpenGrid{
   transform: translateX(0px);
 }
