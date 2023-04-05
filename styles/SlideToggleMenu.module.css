@@ -131,3 +131,22 @@ padding-top:5rem;
 .buttonText {
   margin-left: 1rem;
 }
+
+
+.menuGrid {
+    position: fixed;
+    bottom: 75px;
+    left: 0;
+    float: left;
+    color: #fff;
+    width: auto;
+    text-align: left;
+    background: #f1f1f1;
+    box-shadow: 0 0 30px rgba(0,0,0,0);
+    transform: translateX(-101vw);
+    height: calc(100vh - 100px);
+    width: 100vw;
+    z-index: 100;
+    padding: 5rem 1rem 1rem;
+    transition: all .3s;
+}
