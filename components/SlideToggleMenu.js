@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Link from "next/link"; // Added import for Link component
-import { useRouter } from "next/router"; // Added import for useRouter hook
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "../styles/SlideToggleMenu.module.css";
 
 export default function SlideToggleMenu() {
@@ -42,8 +42,8 @@ export default function SlideToggleMenu() {
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
-  
-  function handleClick(id) {
+
+  function handleLinkClick() {
     setIsOpen(false);
   }
 
@@ -59,9 +59,12 @@ export default function SlideToggleMenu() {
       <nav className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`}>
         <ul>
           {slides.map((slide) => (
-            <li key={slide.id} onClick={() => handleClick(slide.id)}>
+            <li key={slide.id}>
               <Link href={slide.href}>
-                <a className={`${router.pathname === slide.href ? "active" : ""}`}>
+                <a
+                  className={`${router.pathname === slide.href ? "active" : ""}`}
+                  onClick={handleLinkClick}
+                >
                   <img src={slide.imgUrl} style={{ width: "20px", height: "auto" }} />
                   {slide.label}
                 </a>
