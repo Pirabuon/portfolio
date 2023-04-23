@@ -1,10 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        return;
+      }
+      try {
+        const response = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+        setError('An error occurred while fetching user data.');
+      }
+    };
+    fetchUserData();
+  }, [isLoggedIn]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -36,12 +59,17 @@ const Login = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    setUserData(null);
   };
 
   return (
     <>
-      {isLoggedIn ? (
-        <p>Hello!</p>
+      {userData ? (
+        <>
+          <p>Welcome, {userData.name} ({userData.email}).</p>
+          <p>You registered on {new Date(userData.registered_date).toLocaleDateString()}.</p>
+          <p>You have {userData.post_count} posts.</p>
+        </>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
