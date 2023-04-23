@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -6,6 +6,13 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -53,7 +60,7 @@ const Login = () => {
   return (
     <>
       {isLoggedIn ? (
-  <p>Hello {username}, your email id is {email}!</p>
+        <p>Hello {username}, your email id is {email}!</p>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
