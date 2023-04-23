@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/37b7d079e7b9f84d249db8c7ce2d01f6f33', {
+      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
