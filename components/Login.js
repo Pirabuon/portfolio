@@ -9,6 +9,10 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
+      const nonceResponse = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
+        credentials: 'include',
+      });
+      const { nonce } = await nonceResponse.json();
       const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/37b7d079e7b9f84d249db8c7ce2d01f6f33', {
         method: 'POST',
         headers: {
@@ -17,7 +21,9 @@ const Login = () => {
         body: JSON.stringify({
           username,
           password,
+          nonce,
         }),
+        credentials: 'include',
       });
       const data = await response.json();
       if (!response.ok) {
@@ -25,8 +31,6 @@ const Login = () => {
         return;
       }
       localStorage.setItem('token', data.token);
-      localStorage.setItem('username', username);
-      localStorage.setItem('email', data.user_email);
       setIsLoggedIn(true);
       setError(null);
     } catch (error) {
@@ -37,15 +41,13 @@ const Login = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('email');
     setIsLoggedIn(false);
   };
 
   return (
     <>
       {isLoggedIn ? (
-        <p>Hello {localStorage.getItem('username')} ({localStorage.getItem('email')})!</p>
+        <p>Hello {username}!</p>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
