@@ -1,15 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          setUser(data);
+          setIsLoggedIn(true);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoggedIn(false);
+        });
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/token', {
+      const response = await fetch(`https://valaakam.com/wp-json/wp/v2/users?username=${username}&password=${password}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (data.length === 0) {
+        setError('Invalid username or password.');
+        return;
+      }
+      const tokenResponse = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,12 +51,8 @@ const Login = () => {
           password,
         }),
       });
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data.message);
-        return;
-      }
-      localStorage.setItem('token', data.token);
+      const tokenData = await tokenResponse.json();
+      localStorage.setItem('token', tokenData.token);
       setIsLoggedIn(true);
       setError(null);
     } catch (error) {
@@ -36,12 +64,17 @@ const Login = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    setUser(null);
   };
 
   return (
     <>
-      {isLoggedIn ? (
-        <p>Hello!</p>
+      {isLoggedIn && user ? (
+        <>
+          <p>Welcome, {user.name} ({user.email})!</p>
+          <p>You have {user.post_count} posts.</p>
+          <button onClick={handleLogout}>Log out</button>
+        </>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
@@ -65,9 +98,6 @@ const Login = () => {
           <button type="submit">Log in</button>
           {error && <p>{error}</p>}
         </form>
-      )}
-      {isLoggedIn && (
-        <button onClick={handleLogout}>Log out</button>
       )}
     </>
   );
