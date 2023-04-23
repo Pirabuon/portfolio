@@ -25,6 +25,8 @@ const Login = () => {
         return;
       }
       localStorage.setItem('token', data.token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('email', data.user_email);
       setIsLoggedIn(true);
       setError(null);
     } catch (error) {
@@ -35,13 +37,15 @@ const Login = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
     setIsLoggedIn(false);
   };
 
   return (
     <>
       {isLoggedIn ? (
-        <p>Hello!</p>
+        <p>Hello {localStorage.getItem('username')} ({localStorage.getItem('email')})!</p>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
