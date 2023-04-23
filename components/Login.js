@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -36,12 +37,36 @@ const Login = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    setUserData(null);
   };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const response = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const user = await response.json();
+        const postCountResponse = await fetch(`https://valaakam.com/wp-json/wp/v2/users/${user.id}/posts`);
+        const posts = await postCountResponse.json();
+        setUserData({ name: user.name, email: user.email, postCount: posts.length });
+      }
+    };
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
 
   return (
     <>
       {isLoggedIn ? (
-        <p>Hello!</p>
+        <>
+          <p>Hello {userData.name} ({userData.email})</p>
+          <p>You have {userData.postCount} posts.</p>
+        </>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
