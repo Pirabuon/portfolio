@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [email, setEmail] = useState('');
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/37b7d079e7b9f84d249db8c7ce2d01f6f33', {
+      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,45 +28,32 @@ const Login = () => {
       localStorage.setItem('token', data.token);
       setIsLoggedIn(true);
       setError(null);
+  
+      // Fetch user's details and update the state
+      const userResponse = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      });
+      const userData = await userResponse.json();
+      setUsername(userData.name);
+      setEmail(userData.email);
     } catch (error) {
       console.error(error);
       setError('An error occurred while logging in. Please try again later.');
     }
   };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    setUserData(null);
   };
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const response = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const user = await response.json();
-        const postCountResponse = await fetch(`https://valaakam.com/wp-json/wp/v2/users/${user.id}/posts`);
-        const posts = await postCountResponse.json();
-        setUserData({ name: user.name, email: user.email, postCount: posts.length });
-      }
-    };
-    if (isLoggedIn) {
-      fetchUserData();
-    }
-  }, [isLoggedIn]);
 
   return (
     <>
       {isLoggedIn ? (
-        <>
-          <p>Hello {userData.name} ({userData.email})</p>
-          <p>You have {userData.postCount} posts.</p>
-        </>
+  <p>Hello {username}, your email id is {email}!</p>
       ) : (
         <form onSubmit={handleLogin}>
           <div>
