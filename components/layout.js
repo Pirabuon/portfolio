@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import SlideToggleMenu from "../components/SlideToggleMenu";
 import StickyMenu from "../components/StickyMenu";
 import Slider from "../components/Slider";
+import Login from "../components/Login";
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function Layout({ children }) {
         <div className="topMenuBar">
           <SlideToggleMenu />
           <StickyMenu />
-
+<Login />
           <Link
             className={
               router.pathname == "/" || router.pathname == "/"
