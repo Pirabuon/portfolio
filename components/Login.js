@@ -1,5 +1,3 @@
-is following code correct?
-
 import { useState, useEffect } from 'react';
 
 const Login = () => {
