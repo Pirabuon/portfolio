@@ -53,6 +53,7 @@ const [content, setContent] = useState('');
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${data.token}`,
         },
         body: JSON.stringify({
           username,
