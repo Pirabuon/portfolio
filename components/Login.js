@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
+const API_URL = 'https://valaakam.com/wp-json';
+
 const Login = () => {
   const [title, setTitle] = useState('');
-const [content, setContent] = useState('');
-
+  const [content, setContent] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -14,17 +15,19 @@ const [content, setContent] = useState('');
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
+      fetchUserDetails(token);
     }
   }, []);
 
   const handleCreatePost = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://valaakam.com/wp-json/wp/v2/posts', {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}/wp/v2/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           title: title,
@@ -44,16 +47,30 @@ const [content, setContent] = useState('');
       setError('An error occurred while creating the post. Please try again later.');
     }
   };
-  
+
+  const fetchUserDetails = async (token) => {
+    try {
+      const response = await fetch(`${API_URL}/wp/v2/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setUsername(data.name);
+      setEmail(data.email);
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred while fetching user details.');
+    }
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://valaakam.com/wp-json/jwt-auth/v1/token', {
+      const response = await fetch(`${API_URL}/jwt-auth/v1/token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${data.token}`,
         },
         body: JSON.stringify({
           username,
@@ -68,22 +85,12 @@ const [content, setContent] = useState('');
       localStorage.setItem('token', data.token);
       setIsLoggedIn(true);
       setError(null);
-  
-      // Fetch user's details and update the state
-      const userResponse = await fetch('https://valaakam.com/wp-json/wp/v2/users/me', {
-        headers: {
-          Authorization: `Bearer ${data.token}`,
-        },
-      });
-      const userData = await userResponse.json();
-      setUsername(userData.name);
-      setEmail(userData.email);
+      fetchUserDetails(data.token);
     } catch (error) {
       console.error(error);
       setError('An error occurred while logging in. Please try again later.');
     }
   };
-  
 
   const handleLogout = () => {
     localStorage.removeItem('token');
