@@ -51,7 +51,7 @@ export default function Blog(props) {
 
 export async function getStaticProps() {
   const scienceResponse = await fetch(
-    "https://pirabu.com/wp-json/wp/v2/posts?_embed=true&per_page=4&filter[post_type]=blog"
+    "https://pirabu.com/wp-json/wp/v2/blog?_embed=true&per_page=4"
   );
   const scienceData = await scienceResponse.json();
 
