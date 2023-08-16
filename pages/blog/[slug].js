@@ -41,7 +41,7 @@ export default function Post(props) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://valaakam.com/wp-json/wp/v2/posts?per_page=100");
+  const res = await fetch("https://pirabu.com/wp-json/wp/v2/blog?per_page=100");
   const totalPosts = Number(res.headers.get("X-WP-Total"));
   const totalPages = Number(res.headers.get("X-WP-TotalPages"));
 
@@ -49,7 +49,7 @@ export async function getStaticPaths() {
   let paths = [];
   for (let page = 1; page <= totalPages; page++) {
     const res = await fetch(
-      `https://valaakam.com/wp-json/wp/v2/posts?per_page=100&page=${page}`
+      `https://pirabu.com/wp-json/wp/v2/blog?per_page=100&page=${page}`
     );
     const posts = await res.json();
     paths = paths.concat(
@@ -68,7 +68,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const res = await fetch(
-    `https://valaakam.com/wp-json/wp/v2/posts?slug=${slug}&_fields=title,content,author,date,featured_image_url,acf`
+    `https://pirabu.com/wp-json/wp/v2/blog?slug=${slug}&_fields=title,content,author,date,featured_image_url,acf`
   );
   const post = await res.json();
 
