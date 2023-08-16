@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import { useState } from 'react';
 import Cookies from 'js-cookie';
 
 export default function Login() {
