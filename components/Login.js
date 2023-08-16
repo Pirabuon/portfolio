@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_URL = 'https://valaakam.com/wp-json';
+const API_URL = 'https://pirabu.com/wp-json';
 
 const Login = () => {
   const [title, setTitle] = useState('');
