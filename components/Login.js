@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const API_URL = 'https://pirabu.com/wp-json';
+const CUSTOM_POST_TYPE = 'blog'; // Change this to match your custom post type slug
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -10,6 +11,8 @@ const Login = () => {
   const [loggedInUsername, setLoggedInUsername] = useState('');
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostContent, setNewPostContent] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUploadError, setImageUploadError] = useState(null);
   const [createPostError, setCreatePostError] = useState(null);
 
   useEffect(() => {
@@ -60,11 +63,53 @@ const Login = () => {
     setError(null);
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
+  };
+
+  const uploadFeaturedImage = async (postId, token) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedImage);
+      formData.append('post', postId);
+
+      const response = await fetch(`${API_URL}/wp/v2/media`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        setImageUploadError(data.message);
+        return;
+      }
+
+      // Set the uploaded image as the featured image for the post
+      await fetch(`${API_URL}/wp/v2/${CUSTOM_POST_TYPE}/${postId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          featured_media: data.id,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+      setImageUploadError('An error occurred while uploading the image.');
+    }
+  };
+
   const handleCreatePost = async (event) => {
     event.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/wp/v2/blog`, {
+      const response = await fetch(`${API_URL}/wp/v2/${CUSTOM_POST_TYPE}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,13 +121,21 @@ const Login = () => {
           status: 'publish',
         }),
       });
+
       const data = await response.json();
       if (!response.ok) {
         setCreatePostError(data.message);
         return;
       }
+
+      if (selectedImage) {
+        await uploadFeaturedImage(data.id, token);
+      }
+
       setNewPostTitle('');
       setNewPostContent('');
+      setSelectedImage(null);
+      setImageUploadError(null);
       setCreatePostError(null);
     } catch (error) {
       console.error(error);
@@ -114,7 +167,17 @@ const Login = () => {
                 onChange={(event) => setNewPostContent(event.target.value)}
               />
             </div>
+            <div>
+              <label htmlFor="featuredImage">Featured Image</label>
+              <input
+                type="file"
+                id="featuredImage"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
             <button type="submit">Create Post</button>
+            {imageUploadError && <p>{imageUploadError}</p>}
             {createPostError && <p>{createPostError}</p>}
           </form>
         </div>
