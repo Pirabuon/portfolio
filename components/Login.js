@@ -64,7 +64,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/wp/v2/posts`, {
+      const response = await fetch(`${API_URL}/wp/v2/blog`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
