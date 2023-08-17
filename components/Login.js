@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const API_URL = 'https://pirabu.com/wp-json';
 
@@ -8,6 +8,15 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUsername, setLoggedInUsername] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      const storedUsername = localStorage.getItem('username');
+      setLoggedInUsername(storedUsername);
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -31,6 +40,8 @@ const Login = () => {
       setError(null);
       setIsLoggedIn(true);
       setLoggedInUsername(username);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('username', username);
     } catch (error) {
       console.error(error);
       setError('An error occurred while logging in. Please try again later.');
@@ -38,6 +49,8 @@ const Login = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
     setIsLoggedIn(false);
     setUsername('');
     setPassword('');
