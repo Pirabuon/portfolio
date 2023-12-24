@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = 'https://pirabu.com/wp-json';
+const API_URL = 'https://pirabucontent.valaakam.com/wp-json';
 const CUSTOM_POST_TYPE = 'blog'; // Change this to match your custom post type slug
 
 const Login = () => {
